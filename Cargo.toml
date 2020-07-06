@@ -25,19 +25,23 @@ repository = "https://github.com/rust-osdev/x86_64"
 version = "0.11.1"
 edition = "2018"
 
+[workspace]
+
 [dependencies]
 bit_field = "0.9.0"
 bitflags = "1.0.4"
 array-init = { version = "0.1.1", optional = true }
+x86_64-idt-default-handler = { path = "x86_64-idt-default-handler", optional = true}
 
 [build-dependencies]
 cc = { version = "1.0.37", optional = true }
 
 [features]
-default = [ "nightly" ]
+default = [ "nightly", "proc_macros" ]
 deny-warnings = []
 stable = [ "cc", "array-init" ]
 nightly = [ "inline_asm", "const_fn", "abi_x86_interrupt" ]
 inline_asm = []
 abi_x86_interrupt = []
 const_fn = []
+proc_macros = [ "x86_64-idt-default-handler" ]
